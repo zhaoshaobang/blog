@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+        .special{
+            border: 5px solid #333;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id='username'><br/>
+    <input type="text" id='password'><br/>
+    <input type='button' id='btn1' value="按钮1"/>
+    <input type='button' id='btn2' value="按钮2"/>
+    <script>
+       function setCookie(cookieName, cookieValue, expiredays) {
+            var date=new Date();
+            date.setDate(date.getDate()+expiredays);
+            document.cookie=cookieName+'='+cookieValue+'; expries='+date.toGMTString();
+        }
+
+        // 获取cookie值
+        function getCookie(cookieName) {
+            var cookies=document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var userData=cookies[i].split('=');
+                if (userData[0]==cookieName) {
+                    return userData[1];
+                };
+            };
+            return '';
+        }
+        var btn1=document.getElementById('btn1');
+        var btn2=document.getElementById('btn2');
+        var myname=document.getElementById('username').value;
+       
+        var mypassword=document.getElementById('password');
+        btn1.onclick=function(){
+            //alert(myname);
+            setCookie('username',myname,1);
+            //alert(getCookie('username'));
+        };
+        btn2.onclick=function(){
+            alert(getCookie("username"));
+        };
+        
+
+    </script>
+</body>
+</html>

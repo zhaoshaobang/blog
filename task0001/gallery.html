@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function getCookie(cookieName) {
+            var cookies=document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var userData=cookies[i].split('=');
+                if (userData[0]==cookieName) {
+                    return userData[1];
+                };
+            };
+            return '';
+        }
+         window.onload=function(){
+            var name1=getCookie("username");
+            alert(name1);
+        }
+    </script>
+</body>
+</html>
