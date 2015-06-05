@@ -1,0 +1,122 @@
+*{
+    margin:0;
+    padding:0;
+}
+body{
+    background-color: #222;
+    font:Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+#login{
+    width: 500px;
+    height:400px;
+    background-color: #fff;
+    margin-left: -250px;
+    margin-top:-270px;
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    z-index: 99999;
+    -moz-box-shadow:0px 0px 30px #000; /* 老的 Firefox */
+    -webkit-box-shadow:0px 0px 30px #000;
+    -o-box-shadow:0px 0px 30px #000;
+    -ms-box-shadow:0px 0px 30px #000;
+    box-shadow: 0px 0px 30px #000;
+}
+.title{
+    height:50px;
+    background:#F7F7F7 url('../img/logo.png') no-repeat 18px 10px;
+}
+.title span{
+    line-height:50px;
+    margin-left:55px;
+    font-weight:bold;
+    color: #666;
+}
+
+#loginForm{
+    width:430px;
+    margin:40px auto;
+}
+#loginForm p{
+    padding:10px 5px;
+}
+input.user{
+    width:360px;
+    height:20px;
+    border:1px solid #ddd;
+    padding:15px 0px 15px 30px; 
+    line-height:20px;
+}
+input.user:focus{
+    border:#3F89EC 1px solid;
+}
+input.name{
+    background:url('../img/input_icons.png') no-repeat 0px -62px;
+}
+input.name:focus{
+    background: url('../img/input_icons.png') no-repeat 0px -100px;
+}
+input.pwd{
+    background: url('../img/input_icons.png') no-repeat 0px -135px;
+}
+input.pwd:focus{
+    background: url('../img/input_icons.png') no-repeat 0px -175px;
+}
+input.identify{
+    width:100px;
+    background: url('../img/input_icons.png') no-repeat 0px 18px;
+}
+input.identify:focus{
+    background: url('../img/input_icons.png') no-repeat 0px -22px;
+}
+#box{
+    height:20px;
+    margin-right:5px;
+    vertical-align: middle;
+}
+#btn{
+    width:420px;
+    height:50px;
+    background-color:#3F89EC;
+    color:#FFFFFF;
+    font-size:14px;
+    font-weight:bold;
+    border-width:0px;
+    border-radius:5px;
+    cursor:pointer;
+}
+#btn:hover{
+    background-color: #4d89f6;
+}
+#btn:active{
+    background-color: #3271e5;
+}
+#loginForm img{
+    width: 20px;
+    height: 20px;
+    border: 0px;
+    display: none;
+}
+
+#tip{
+    left: 40px;
+    top: 150px;
+    border: 1px #bbb solid;
+    width: 390px;
+    background: #fff;
+    position: absolute;
+    display: none;
+}
+#tip ul li{
+    list-style-type: none;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #ddd;
+    padding-left: 20px;
+    width: 370px;
+    background: #fff;
+}
+#tip ul li:hover{
+    background: #ccc;
+    cursor: pointer;
+}

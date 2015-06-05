@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录界面</title>
+    <link href="css/style.css" rel="stylesheet"></style>
+    <link href="css/supersized.css" rel="stylesheet"></style>
+    <script type='text/javascript' src='js/jquery-2.1.1.min.js'></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#username').keypress(function(e){    
+                if (e.shiftKey && e.which==64) {
+                    var username=$('#username').val();
+                    $('#tip ul li').each(function(index){     
+                        switch(index){
+                            case 0:
+                                $(this).text(username+'@hotmail.com');
+                                break;
+                            case 1:
+                                $(this).text(username+'@gmail.com');
+                                break;
+                            case 2:
+                                $(this).text(username+'@126.com');
+                                break;
+                        }
+                    });
+                    $('#tip').show();
+                };
+            });
+
+           $('#tip').find('li').bind('click',function(){  
+                $('#username').val(this.innerHTML);  
+                $('#tip').hide();  
+            });
+
+           $('#btn').bind('click',function(){
+                if ($('#username').val()=="") {
+                    $('img:eq(0)').show();
+                }
+                else{
+                    $('img:eq(0)').hide();
+                }
+
+                if ($('#password').val()=="") {
+                    $('img:eq(1)').show();
+                }
+                else{
+                    $('img:eq(1)').hide();
+                }
+                
+                if ($('#identify').val()=="") {
+                    $('img:eq(2)').show();
+                }
+                else{
+                    $('img:eq(2)').hide();
+                }
+
+           });
+        });
+    </script>
+</head>
+<body>
+   
+    <div id="login">
+        <div class="title">
+            <span>登录界面</span>
+        </div>
+        <form id="loginForm">
+            <p>
+                <input type="text" placeholder="请输入您的用户名！" value="" name="username" class="user name" id='username' />
+                <img src="img/error.png" alt="error">
+            </p>
+            <p>
+                <input type="password" placeholder="请输入您的密码！" value="" name="userpwd" class="user pwd" id="password"/>
+                <img src="img/error.png" alt="error">
+            </p>
+            <p>
+                <input type="text" placeholder="请输入验证码！" name="identify" class="user identify" id="identify"/>
+                <img src="img/error.png" alt="error">
+            </p>
+            <p>
+                <input type="button" value="登录" id="btn"/>
+            </p>
+        </form>
+        <div id="tip">
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>   
+    <script src="js/supersized.3.2.7.min.js" ></script>
+    <script src="js/supersized-init.js" ></script>
+</body>
+</html>
