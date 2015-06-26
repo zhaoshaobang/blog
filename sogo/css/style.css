@@ -1,0 +1,294 @@
+/* 
+**Author:赵文龙;
+ */
+
+ .clearfix{
+    clear: both;
+ }
+
+ body{
+    
+    font-family: SimSun,arial,sans-serif;
+    color:#555;
+ }
+
+ #container{
+    width: 965px;
+    height: 756px;
+    margin: 0 auto;
+    background: #e8e8e8;
+    overflow: hidden;
+ }
+
+ #left{
+    float: left;
+    width: 760px;
+ }
+
+.top{
+    background: #fff;
+    margin: 5px;
+    border: 1px solid #c5c5c5;
+ }
+ .left_top{
+    width: 748px;
+    height: 308px;
+    color: white;
+    position: relative;
+    overflow: hidden; 
+ }
+
+#slide{
+    padding: 9px 2px;
+    left: 0;
+    top: 0;
+    position: relative;
+    width: 2232px;/*  (170+8*2)*n  */ 
+}
+
+#slide li{
+    margin:0px 8px;
+    float: left;
+    position: relative;
+    width: 170px;
+    height: 290px;
+    display: inline;
+}
+
+img.hero{
+    width: 170px;
+}
+
+.intro{
+    bottom: 2px;
+    left: 0px;
+    position: absolute;
+    background-color: #000 ;
+    filter:alpha(opacity=50);
+    opacity: 0.5;
+    width: 170px;
+    height: 80px;
+
+}
+
+.intro span.bang{
+    position: absolute;
+    left: 14px;
+    top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.intro span.character{
+    position: absolute;
+    right: 14px;
+    top: 14px;
+    font-size: 12px;
+   
+}
+
+
+img.go_btn{
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    margin-left: -72px;
+}
+
+.aLeft{
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    margin-top: -20px;
+}
+
+.aLeft img,
+.aRight img{
+    filter:alpha(opacity=70);
+    opacity: 0.7;
+}
+
+.aRight{
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    margin-top: -20px;
+}
+
+
+
+ .middle{
+    width: 750px;
+    margin: 5px;
+    background-color: #e8e8e8;
+    font-size: 14px;
+ }
+
+.mls{
+    float: left;
+    border-left: 4px solid #666;
+    padding-left: 10px;
+    margin: 4px 0px;
+    line-height: 16px;
+}
+
+.middle .mrs{
+    float: right;
+    margin: 4px 0px;
+    line-height: 16px;
+}
+
+.middle img.mrs{
+    margin-right: 5px;
+}
+
+.more{
+    padding: 0px 5px 0px 10px;
+}
+
+a{
+    color: #555;
+    text-decoration: none;
+}
+
+
+
+
+.bottom{
+    background: #fff;
+    margin: 5px;
+    border: 1px solid #c5c5c5;
+    padding-top: 5px;
+       
+}
+.left_bottom{
+    width: 748px;
+    height: 395px;
+}
+
+.game{
+   margin: 5px 15px; 
+   float: left;
+   width: 157px;
+   overflow: hidden;
+   display: inline;
+}
+
+.game img{
+    width: 157px;
+}
+
+.tip {
+    font-size: 14px;
+    margin-top: 5px;
+    overflow: hidden;
+}
+
+.tip .mrs{
+    float: right;
+}
+
+.tip img{
+    width: 60px;
+    margin-left: 10px;
+}
+
+
+
+ #right{
+    width: 200px;
+    float: left;
+ }
+
+.top3{
+    border-left: 4px solid #666;
+    padding-left: 10px;
+    display: block;
+    font-size: 14px;
+    line-height: 16px;
+    margin-left: 5px;
+    margin-top: 7px;
+}
+
+ul.right_top{
+    height: 286px;   
+    background: #fff;
+    margin: 5px;
+    border: 1px solid #c5c5c5;
+    border-top: 0px;
+}
+
+ul.right_top li{
+    height: 58px;
+    border-top: 1px solid #c5c5c5;
+    padding: 18px 0px 18px 10px;
+    position: relative;
+    background:url("../img/xu.jpg") no-repeat top right;
+    overflow: hidden; 
+}
+
+
+.info{
+    font-size: 12px;
+    color: #555;
+    line-height: 18px;
+    position: absolute;
+    top: 18px;
+    right: 50px;
+}
+ 
+
+.today{
+    border-left: 4px solid #666;
+    padding-left: 10px;
+    display: block;
+    font-size: 14px;
+    line-height: 16px;
+    margin-left: 5px;
+    margin-top: 9px;
+    margin-bottom: 9px;
+}
+
+.right_bottom{
+    background: #fff;
+    margin: 5px;
+    border: 1px solid #c5c5c5;
+    padding-top: 10px;
+    width: 190px;
+}
+
+.right_bottom li{
+    width: 180px;
+    margin: 0px 5px;
+    padding: 9px 0px;
+    font-size: 12px;
+    line-height: 16px;
+    border-bottom: 1px dotted #c5c5c5;
+    position: relative;
+
+}
+
+.right_bottom li.last{
+    border-bottom: 0px;
+}
+
+.game_name{
+    top: 10px;
+    left: 26px;
+    position: absolute;
+    display: inline-block;
+}
+
+.location{
+    top: 10px;
+    left: 100px;
+    position: absolute;
+    display: inline-block;
+}
+
+.time{
+    top: 10px;
+    right: 2px;
+    position: absolute;
+    display: inline-block;
+}
