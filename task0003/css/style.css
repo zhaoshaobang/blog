@@ -1,0 +1,266 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+ul,li{
+    list-style-type: none;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+html,body{
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    background-color: #fff;
+    font-family: helvetica, Arial,sans-serif;
+    font-size: 62.5%;
+}
+
+ #header{
+    height: 60px;
+    min-width: 600px;
+    width: 100%;
+    background: #ddd;
+    border: 2px solid #ccc;
+    border-bottom-width: 1px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    -o-box-sizing:border-box;
+} 
+
+.logo{
+    font-size: 3.6em;
+    color: #999;
+    line-height: 56px;
+    font-weight: bolder;
+    margin-left: 20px;
+}
+
+#container{
+    /* font-size: 1.8em; */
+    min-width: 600px;
+    min-height: 200px;
+    width: 100%;
+    height: 100%;  
+    overflow: hidden;
+    padding-top: 60px;
+    padding-bottom: 50px; 
+    box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    -o-box-sizing:border-box;
+}
+
+#left,
+#middle{
+    background-color: #f2f2f2;
+    width: 250px;
+    height: 100%;
+    border: 1px solid #ccc;
+    border-top-width: 0px;
+    border-bottom-width:0px;
+    overflow: hidden;
+    position: relative;
+    float: left;
+}  
+
+.all_task,
+.classify{
+    display: block;
+    font-size: 1.8em;
+    line-height: 1;
+}
+
+.all_task,
+.classify{
+    margin: 20px 0px 0px 10px; 
+}
+
+ul.list{
+    margin-top: 10px;
+}
+
+ul.list li ul li{
+    padding-left: 25px;
+}
+
+ span.icon-folder-open{
+    height: 20px;
+    font-size: 1.8em;
+    line-height: 20px;
+    padding:6px 0px  6px 25px;
+    cursor: pointer;
+    display: block;
+}
+
+a.icon-file-empty{
+    height: 20px;
+    font-size: 1.6em;
+    line-height: 20px;
+    padding: 5px 0px 5px 50px;
+    margin-left: -25px;
+    display: block;
+}
+
+span.icon-folder-open:hover,
+a.icon-file-empty:hover{
+    color: green;
+    background-color: #fff;
+}
+
+span.icon-folder-open span:first-child,
+a.icon-file-empty span{
+    margin-left: 10px;
+    font-family:helvetica, Arial,sans-serif;
+    font-size: 1em;
+    line-height: 1;
+    display: inline-block;
+}
+
+span.icon-cross{
+    font-size: 14px;
+    line-height: 20px;
+    color: green;
+    display: none;
+    float: right;
+    margin-right: 10px;
+}
+
+span.icon-folder-open:hover span.icon-cross{
+    display: inline-block;
+}
+
+.add{
+    width: 100%;
+    height: 50px;
+    border-top: 1px solid #ccc;
+    background: #eee;
+    position: absolute;
+    bottom: 0px;
+    cursor: pointer;
+}
+
+.add:hover,
+.add:hover span{
+    background-color: #fff;
+    color: green;
+}
+
+
+.add span{
+    display: inline-block;
+    padding-left: 25px;
+    font-size: 1.8em;
+    line-height: 50px;
+}
+
+.add span + span{
+    position: absolute;
+    left: 50%;
+    margin-left: -46px;
+    padding: 0px;
+}
+
+#middle{
+    border-left: 0px;   
+    background-color: #fff;
+
+}
+
+#tasks_btns{
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid #ccc;
+    background-color: #eee;
+    overflow: hidden;
+    
+}
+
+span.btn_filter{
+    display: inline-block;
+    padding: 5px 2px;
+    margin-top: 10px;
+    width: 60px;
+    text-align: center;
+    float: left;
+    margin-left: 10px;
+    font-size: 1.6em;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.btn_active{
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+#tasks{
+    font-size: 1.4em;
+    line-height: 30px;
+}
+
+#tasks ul.content{
+    display: none;
+}
+
+#tasks ul.tasks_active{
+    display: block;
+}
+
+#tasks span.time{
+    display: block;
+    padding-left: 20px;
+    background-color: #fafaee;
+}
+
+#tasks ul.content ul{
+    margin-left: 40px;
+}
+
+#tasks li.no_finish a{
+    color: green;
+}
+
+
+
+#footer{
+    width: 100%;
+    min-width: 600px;
+    height: 50px;
+    margin-top: -50px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    -o-box-sizing:border-box;
+}
+
+
+#footer span{
+    font-size: 1.4em;
+    line-height: 48px;
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    margin-left: -105px;
+}
+
+
+
+
