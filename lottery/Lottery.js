@@ -173,7 +173,12 @@ Lottery.prototype = {
             image.src = this.cover;
         }
     },
-    init: function () {        
+    init: function (lottery,lotteryType) {  
+        if (lottery && lotteryType) {
+            this.lottery = lottery ;
+            this.lotteryType = lotteryType||'image';
+        };
+              
         this.drawLottery();
     }
 }
