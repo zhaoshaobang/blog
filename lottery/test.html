@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>刮奖效果</title>
+<style>
+	*{
+		margin: 0px;
+		padding: 0px;
+	}
+	body{
+		height: 1000px;
+	}
+	canvas
+	{		
+		position: absolute;			
+		border: 2px solid #ddd;	
+		left:50px;
+		top: 50px;
+	}
+	#div1{
+		margin: 10px auto;
+		border: 2px solid #ccc;		
+		width: 300px;
+		height: 300px;
+		position: relative;
+	}
+	#btn{
+		margin: 10px auto;
+		display: block;
+		width: 100px;
+		height: 50px;
+		font-size: 24px;
+	}
+	</style>
+</head>
+<body>
+<div id="div1">
+	<canvas id="c1" width="200" height="200"></canvas>
+	<canvas id="c2" width="200" height="200"></canvas>
+</div>
+<button id="btn">涂抹</button>
+<script>
+window.onload=function(){
+	var c1=document.getElementById("c1");
+	var c2=document.getElementById("c2");
+	var btn=document.getElementById("btn");
+
+	var ctx1=c1.getContext("2d");  
+	var image=new Image();
+	image.onload = function () {       
+        ctx1.drawImage(this, 0, 0);        
+    }
+    image.src = "yang.jpg";  
+	/*ctx1.fillStyle="red";
+	ctx1.fillRect(0,0,200,200);*/
+
+	var ctx2=c2.getContext("2d");    
+	ctx2.fillStyle="blue";
+	ctx2.fillRect(0,0,200,200);
+	
+	btn.onclick=function(e){		
+        ctx2.globalCompositeOperation="destination-out";
+		ctx2.beginPath();
+        var grd=ctx2.createRadialGradient(90,90,0,90,90,50);
+        grd.addColorStop(0,'rgba(0,0,0,0.6)');
+        grd.addColorStop(1,'rgba(255, 255, 255, 0)');
+        ctx2.fillStyle=grd;
+        ctx2.arc(90, 90, 50, 0, Math.PI * 2, true);
+        ctx2.fill();
+        
+	}
+	document.addEventListener("mouseup",function(e){
+		var title=document.getElementsByTagName("title")[0];
+		title.innerHTML="x:"+e.clientX+", y:"+e.clientY;
+		console.log(btn.getBoundingClientRect().top-document.documentElement.clientTop);
+		console.log(document.documentElement.scrollTop);
+	});
+}
+	
+</script>
+
+</body>
+</html>
