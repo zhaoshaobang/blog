@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#content{
+			width: 200px;
+			height: 200px;
+			border: 1px solid #ccc;
+			background-color: blue;
+			margin: 0 auto;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="content"></div>
+	<script type="text/javascript">
+		var box=document.getElementById("content");
+		var isMouseDown=false;
+		box.addEventListener("mousemove",function(e){
+			if(isMouseDown){
+				console.log("move");	
+			}
+			
+		});
+		box.addEventListener("mousedown",function(e){
+			isMouseDown=true;
+		});
+		document.addEventListener("mouseup",function(e){
+			isMouseDown=false;
+		});
+
+	</script>
+</body>
+</html>
