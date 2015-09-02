@@ -12,9 +12,16 @@ function Lottery(id,lottery, lotteryType, cover, coverType, width, height, point
     this.width = width || 300;
     this.height = height || 100;
     this.clientRect = null;
-    this.drawPercentCallback = drawPercentCallback;
-    this.pointRadius=pointRadius;//笔触半径
-    this.percent=percent;//涂抹百分比
+    this.drawPercentCallback = drawPercentCallback || null;
+    this.pointRadius=pointRadius || 40;//笔触半径
+    this.percent=percent || 70;//涂抹百分比
+    this.posX=0;
+    this.posY=0;
+    this.maskColBlock=Math.floor(this.width/this.pointRadius);//遮罩层横向被分成的块数
+    this.numBlock=this.maskColBlock*(Math.floor(this.height/this.pointRadius));//遮罩层所有的块数
+    this.blocksFlag=[];
+    this.ratio=0;
+    this.complete=false;
     this.init();
 }
 
@@ -38,26 +45,48 @@ Lottery.prototype = {
         }
         return (transPixs.length / (pixles.length / 4) * 100).toFixed(2);
     },
+    evaluatePoint:function(tx,ty){
+        var p = Math.floor(tx/this.pointRadius) + Math.floor( ty / this.pointRadius ) * (this.maskColBlock);
+        if ( p >= 0 && p < this.numBlock ) {
+            this.ratio += this.blocksFlag[p];
+            this.blocksFlag[p] = 0;
+            if ( !this.complete) {
+                var number=((this.ratio/this.numBlock)*100).toFixed(2);
+                if ( this.drawPercentCallback != null ){
+                    this.drawPercentCallback.call(null, number);
+                }
+                if ( number>= this.percent ) {
+                    this.complete = true;                
+                    this.resizeCanvas(this.mask, 0, 0);
+                    this.drawPercentCallback(100);                    
+                }
+            }
+        }
+    },
     resizeCanvas: function (canvas, width, height) {
         canvas.width = width;
         canvas.height = height;
         canvas.getContext('2d').clearRect(0, 0, width, height);
     },
     drawPoint: function (x, y) {
+        _this=this;
         this.maskCtx.beginPath();
         var radgrad = this.maskCtx.createRadialGradient(x, y, 0, x, y, this.pointRadius);
-        radgrad.addColorStop(0, 'rgba(0,0,0,0.6)');
-        radgrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+        radgrad.addColorStop(0, 'rgba(0,0,0,1)');
+        radgrad.addColorStop(1, 'rgba(255, 255, 255, 1)');
         this.maskCtx.fillStyle = radgrad;
         this.maskCtx.arc(x, y, this.pointRadius, 0, Math.PI * 2, true);
         this.maskCtx.fill();
         if (this.drawPercentCallback) {
-            var number=this.getTransparentPercent(this.maskCtx, this.width, this.height);
-            this.drawPercentCallback.call(null, number);
-            if (number>this.percent) {
-                this.resizeCanvas(this.mask, this.width, this.height);
-                this.drawPercentCallback(100);
+            
+            var number=_this.getTransparentPercent(_this.maskCtx, _this.width, _this.height);
+            _this.drawPercentCallback.call(null, number);
+            if (number>_this.percent) {
+                _this.resizeCanvas(_this.mask, _this.width, _this.height);
+                _this.drawPercentCallback(100);
             };
+            
+            
         }
     },
     bindEvent: function () {
@@ -91,7 +120,16 @@ Lottery.prototype = {
             }
             var x = (device ? e.touches[0].clientX : e.clientX) - _this.clientRect.left + docEle.scrollLeft - docEle.clientLeft;
             var y = (device ? e.touches[0].clientY : e.clientY) - _this.clientRect.top + docEle.scrollTop - docEle.clientTop;
-            _this.drawPoint(x, y);
+            _this.posX=x;
+            _this.posY=y;
+            _this.maskCtx.beginPath();
+            _this.maskCtx.moveTo(_this.posX-1,_this.posY);
+            _this.maskCtx.lineTo(_this.posX,_this.posY);
+            _this.maskCtx.stroke();
+            _this.evaluatePoint(_this.posX,_this.posY);
+            //var number=_this.getTransparentPercent(_this.maskCtx, _this.width, _this.height);
+            //_this.drawPercentCallback.call(null, number);
+            //_this.drawPoint(x, y);
         }, false);
 
         this.mask.addEventListener(moveEvtName, function (e) {
@@ -107,7 +145,16 @@ Lottery.prototype = {
             }
             var x = (device ? e.touches[0].clientX : e.clientX) - _this.clientRect.left + docEle.scrollLeft - docEle.clientLeft;
             var y = (device ? e.touches[0].clientY : e.clientY) - _this.clientRect.top + docEle.scrollTop - docEle.clientTop;
-            _this.drawPoint(x, y);
+            _this.maskCtx.beginPath();
+            _this.maskCtx.moveTo(_this.posX,_this.posY);
+            _this.posX=x;
+            _this.posY=y;
+            _this.maskCtx.lineTo(_this.posX,_this.posY);
+            _this.maskCtx.stroke();
+            _this.evaluatePoint(_this.posX,_this.posY);
+            //var number=_this.getTransparentPercent(_this.maskCtx, _this.width, _this.height);
+            //_this.drawPercentCallback.call(null, number);
+            //_this.drawPoint(x, y);
         }, false);
     },
     drawLottery: function () {
@@ -116,7 +163,7 @@ Lottery.prototype = {
         });
         this.mask = this.mask || this.createElement('canvas', {
             style: 'position:absolute;left:0;top:0;'
-        });
+        }); 
 
         if (!this.conNode.innerHTML.replace(/[\w\W]| /g, '')) {
             this.conNode.appendChild(this.background);
@@ -161,19 +208,31 @@ Lottery.prototype = {
         this.resizeCanvas(this.mask, this.width, this.height);
         if (this.coverType == 'color') {
             this.maskCtx.fillStyle = this.cover;
-            this.maskCtx.fillRect(0, 0, this.width, this.height);
+            this.maskCtx.fillRect(0, 0, this.width, this.height);            
             this.maskCtx.globalCompositeOperation = 'destination-out';
+            this.maskCtx.strokeStyle='rgba(255,0,0,255)';
+            this.maskCtx.lineWidth=this.pointRadius;
+            this.maskCtx.lineCap="round";
         } else if (this.coverType == 'image'){
             var image = new Image(),
                 _this = this;
             image.onload = function () {
                 _this.maskCtx.drawImage(this, 0, 0);
                 _this.maskCtx.globalCompositeOperation = 'destination-out';
+                _this.maskCtx.strokeStyle='rgba(255,0,0,255)';
+                _this.maskCtx.lineWidth=_this.pointRadius;
+                _this.maskCtx.lineCap="round";
             }
             image.src = this.cover;
         }
     },
-    init: function (lottery,lotteryType) {  
+    init: function (lottery,lotteryType) {
+        this.ratio=0;
+        this.complete=false;
+        var n=this.numBlock;  
+        while(n--){
+            this.blocksFlag[n]=1;
+        }
         if (lottery && lotteryType) {
             this.lottery = lottery ;
             this.lotteryType = lotteryType||'image';
