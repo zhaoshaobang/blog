@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>俄罗斯方块游戏</title>
+
+</head>
+<style type="text/css">
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+    #content{
+        width:260px;
+        margin: 0 auto;
+        position: relative;
+    }
+    #board{
+        border-collapse: collapse;
+    }
+    #board tr td{
+        width: 25px;
+        height: 25px;
+    }
+    #start{
+        width: 60px;
+        height: 30px;
+        background-color: #ccc;
+        border:1px solid #000;
+        font-size: 20px;
+        line-height: 30px;
+        text-align: center;
+        display: block;
+        color: #000;
+        position: absolute;
+        bottom: -40px;
+        left: 50%;
+        margin-left: -30px;
+    }
+</style>
+<body>
+    
+    <div id="content">
+        <h2>俄罗斯方块小游戏</h2>
+        <p>提示：左方向键是左移，右方向键是右移，上方向键是变形，下方向键是下移</p>
+        <h2 id="score">得分：0</h2>
+        <button id="start">开始</button>
+    </div>
+    <script type="text/javascript" src="square.js"></script>
+    <script type="text/javascript">
+         var game=new squareAction(20,12);//可以传入面板的行数和列数
+         var btnStart=document.getElementById("start");
+         if(document.addEventListener){
+            btnStart.addEventListener("click",gameStart);
+         }
+         else{
+            btnStart.attachEvent("onclick",gameStart);
+         }
+         function gameStart(e){
+            var e=e||event;
+            e.target.disabled=true;
+            game.init();
+         }
+    </script>
+</body>
+</html>
