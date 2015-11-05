@@ -56,7 +56,7 @@ squareAction.prototype={
         };
         this.content.appendChild(table);
     },
-    generateBlock(){
+    generateBlock:function(){
         var block = new Array(4);    
         //generate a random int number between 0-6;    
         var t = (Math.floor(Math.random()*20)+1)%7;
